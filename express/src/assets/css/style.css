@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Playwrite RO", cursive;
+  font-optical-sizing: auto;
+}
+p {
+  color: red;
+}
+
+#batch {
+  font-size: larger;
+  font-weight: 900;
+}
+
+.button {
+  color: brown;
+}
+
+button:hover {
+  cursor: pointer;
+}
