@@ -13,10 +13,8 @@ app.use(express.urlencoded({ extended: false }));
 // res => dari server ke client
 
 app.get("/", home);
-
 app.get("/contact", contact); // render
 app.post("/contact", handleContact); // handle submit data
-
 app.get("/portofolio/:id", portofolioDetail);
 
 app.listen(port, () => {
@@ -67,6 +65,8 @@ function handleContact(req, res) {
 
   accounts.push(account);
   console.log(accounts);
+
+  res.redirect("/");
 }
 
 function portofolioDetail(req, res) {
