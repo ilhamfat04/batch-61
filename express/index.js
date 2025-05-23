@@ -1,5 +1,15 @@
 // const express = require("express");
 import express from "express";
+import { Pool } from "pg";
+
+const db = new Pool({
+  user: "postgres",
+  password: "root",
+  host: "localhost",
+  port: 5432,
+  database: "b61-personal-web",
+  max: 20,
+});
 
 const app = express();
 const port = 3000;
@@ -11,6 +21,9 @@ app.use("/assets", express.static("src/assets"));
 app.use(express.urlencoded({ extended: false }));
 // req => dari client ke server
 // res => dari server ke client
+
+// async =  kode dieksekusi berdasarkan waktu eksekusi
+// sync = kode dieksekusi berdasarkan urutan
 
 app.get("/", home);
 app.get("/contact", contact); // render
@@ -40,8 +53,10 @@ let data = [
   },
 ];
 
-function home(req, res) {
-  res.render("index", { data });
+async function home(req, res) {
+  const query = `SELECT * FROM human`;
+  const result = await db.query(query);
+  res.render("index", { result });
 }
 
 function contact(req, res) {
@@ -51,7 +66,7 @@ function contact(req, res) {
 
 let accounts = [];
 
-function handleContact(req, res) {
+async function handleContact(req, res) {
   // let name = req.body.name;
   // let password = req.body.password;
   let { name, password } = req.body;
@@ -63,8 +78,11 @@ function handleContact(req, res) {
     password,
   };
 
-  accounts.push(account);
-  console.log(accounts);
+  // accounts.push(account);
+  const query = `INSERT INTO human(name) VALUES ('${account.name}')`;
+  // const query = `SELECT * FROM person`;
+  const result = await db.query(query); //butuh waktu untu menyelesaikan
+  // console.log(result); //result kosong
 
   res.redirect("/");
 }

@@ -6,14 +6,14 @@
     <link rel="stylesheet" href="../assets/css/style.css" />
   </head>
   <body>
+    <nav>
+
+    </nav>
     <p>This Homepage</p>
     <a href="/contact ">click here</a>
 
-    {{#each data}}
-      <p>{{this.id}}
-        -
-        {{this.title}}
-        -
+    {{#each result.rows}}
+      <p>{{this.name}}
         <a href="/portofolio/{{this.id}} ">click here</a></p>
     {{/each}}
 
