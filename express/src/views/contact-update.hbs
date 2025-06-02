@@ -9,14 +9,14 @@
 
     </nav>
     <form action="/contact" method="POST">
-      <input type="text" id="name" name="name" />
+      {{!-- {{#each result.rows}} --}}
+      <input type="text" id="name" name="name" value="{{data.name}}" />
+      <input type="hidden" id="id" name="id" value="{{data.id}}" />
       <input type="password" id="password" name="password" />
       <button type="submit">Submit</button>
+      {{!-- {{/each}} --}}
     </form>
     <hr />
-    {{#each result.rows}}
-      <p>{{this.name}}
-        <a href="/update/{{this.id}} ">update</a></p>
-    {{/each}}
+
   </body>
 </html>

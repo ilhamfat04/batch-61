@@ -7,15 +7,23 @@
   </head>
   <body>
     <nav>
-
+      <a href="/login">Login</a>
+      <a href="/register">Register</a>
     </nav>
+
+    {{#if userData}}
+      <h1>Hello {{userData.name}}</h1>
+      <h1>Hello {{userData.email}}</h1>
+    {{/if}}
+
+    <hr />
     <p>This Homepage</p>
     <a href="/contact ">click here</a>
 
-    {{#each result.rows}}
+    {{!-- {{#each result.rows}}
       <p>{{this.name}}
         <a href="/portofolio/{{this.id}} ">click here</a></p>
-    {{/each}}
+    {{/each}} --}}
 
     {{! for (let i=0; i<data.length; i++){
       data[i].id
